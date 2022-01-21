@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 192
-  Top = 125
-  Width = 792
-  Height = 433
+  Left = 296
+  Top = 139
+  Width = 883
+  Height = 510
   Caption = 'Form1'
   Color = clBtnFace
   UseDockManager = True
@@ -13,36 +13,39 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnKeyDown = FormKeyDown
+  OnKeyUp = FormKeyUp
   PixelsPerInch = 96
   TextHeight = 13
   object tlo: TShape
     Left = 0
     Top = 0
-    Width = 776
-    Height = 394
+    Width = 867
+    Height = 471
     Align = alClient
     Brush.Color = clScrollBar
   end
   object p1: TShape
-    Left = 64
-    Top = 96
-    Width = 41
-    Height = 185
+    Left = 56
+    Top = 128
+    Width = 17
+    Height = 193
     Brush.Color = clTeal
   end
   object p2: TShape
-    Left = 648
-    Top = 96
-    Width = 41
-    Height = 185
+    Left = 768
+    Top = 128
+    Width = 17
+    Height = 193
     Brush.Color = clTeal
   end
-  object pilka: TImage
-    Left = 552
+  object b: TImage
+    Left = 608
     Top = 248
     Width = 32
     Height = 32
     AutoSize = True
+    Enabled = False
     Picture.Data = {
       07544269746D6170360C0000424D360C00000000000036000000280000002000
       0000200000000100180000000000000C0000220B0000220B0000000000000000
@@ -146,10 +149,10 @@ object Form1: TForm1
     Transparent = True
   end
   object zagrajmy: TStaticText
-    Left = 216
-    Top = 32
-    Width = 345
-    Height = 57
+    Left = 280
+    Top = 80
+    Width = 320
+    Height = 40
     Alignment = taCenter
     Caption = 'Zagrajmy w PingPonga!'
     Font.Charset = DEFAULT_CHARSET
@@ -161,9 +164,9 @@ object Form1: TForm1
     TabOrder = 0
   end
   object nowa: TBitBtn
-    Left = 280
-    Top = 296
-    Width = 241
+    Left = 296
+    Top = 352
+    Width = 249
     Height = 57
     Cursor = crHandPoint
     Caption = 'Nowa gra'
@@ -174,11 +177,12 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    OnClick = nowaClick
   end
   object score: TStaticText
-    Left = 336
-    Top = 112
-    Width = 113
+    Left = 400
+    Top = 152
+    Width = 64
     Height = 33
     Alignment = taCenter
     Caption = 'score'
@@ -192,9 +196,9 @@ object Form1: TForm1
     Visible = False
   end
   object odbicia: TStaticText
-    Left = 320
-    Top = 168
-    Width = 145
+    Left = 368
+    Top = 216
+    Width = 126
     Height = 33
     Alignment = taCenter
     Caption = 'Ilosc odbic:'
@@ -208,8 +212,8 @@ object Form1: TForm1
     Visible = False
   end
   object next: TBitBtn
-    Left = 272
-    Top = 224
+    Left = 296
+    Top = 272
     Width = 249
     Height = 57
     Cursor = crHandPoint
@@ -222,5 +226,40 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 4
     Visible = False
+  end
+  object Timer_pilka: TTimer
+    Enabled = False
+    Interval = 15
+    OnTimer = Timer_pilkaTimer
+    Left = 680
+    Top = 40
+  end
+  object gora1: TTimer
+    Enabled = False
+    Interval = 20
+    OnTimer = gora1Timer
+    Left = 80
+    Top = 112
+  end
+  object dol1: TTimer
+    Enabled = False
+    Interval = 20
+    OnTimer = dol1Timer
+    Left = 88
+    Top = 312
+  end
+  object gora2: TTimer
+    Enabled = False
+    Interval = 20
+    OnTimer = gora2Timer
+    Left = 744
+    Top = 120
+  end
+  object dol2: TTimer
+    Enabled = False
+    Interval = 20
+    OnTimer = dol2Timer
+    Left = 752
+    Top = 320
   end
 end
