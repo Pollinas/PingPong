@@ -18,24 +18,24 @@ __published:	// IDE-managed Components
         TShape *p1;
         TShape *p2;
         TImage *b;
-        TStaticText *zagrajmy;
-        TBitBtn *nowa;
+        TStaticText *lets_play;
+        TBitBtn *new_game;
         TStaticText *score;
         TStaticText *odbicia;
-        TBitBtn *next;
-        TTimer *Timer_pilka;
-        TTimer *gora1;
-        TTimer *dol1;
-        TTimer *gora2;
-        TTimer *dol2;
-        void __fastcall nowaClick(TObject *Sender);
-        void __fastcall Timer_pilkaTimer(TObject *Sender);
+        TBitBtn *next_round;
+        TTimer *ball_timer;
+        TTimer *up_p1_timer;
+        TTimer *down_p1_timer;
+        TTimer *up_p2_timer;
+        TTimer *down_p2_timer;
+        void __fastcall new_gameClick(TObject *Sender);
+        void __fastcall ball_timerTimer(TObject *Sender);
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);
-        void __fastcall gora1Timer(TObject *Sender);
-        void __fastcall dol1Timer(TObject *Sender);
-        void __fastcall gora2Timer(TObject *Sender);
-        void __fastcall dol2Timer(TObject *Sender);
+        void __fastcall up_p1_timerTimer(TObject *Sender);
+        void __fastcall down_p1_timerTimer(TObject *Sender);
+        void __fastcall up_p2_timerTimer(TObject *Sender);
+        void __fastcall down_p2_timerTimer(TObject *Sender);
         void __fastcall FormKeyUp(TObject *Sender, WORD &Key,
           TShiftState Shift);
 private:	// User declarations

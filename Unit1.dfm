@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 296
-  Top = 139
-  Width = 883
+  Left = 329
+  Top = 114
+  Width = 882
   Height = 510
   Caption = 'Form1'
   Color = clBtnFace
@@ -20,24 +20,24 @@ object Form1: TForm1
   object tlo: TShape
     Left = 0
     Top = 0
-    Width = 867
+    Width = 866
     Height = 471
     Align = alClient
-    Brush.Color = clScrollBar
+    Brush.Color = clGreen
   end
   object p1: TShape
     Left = 56
     Top = 128
     Width = 17
     Height = 193
-    Brush.Color = clTeal
+    Brush.Color = clMaroon
   end
   object p2: TShape
     Left = 768
     Top = 128
     Width = 17
     Height = 193
-    Brush.Color = clTeal
+    Brush.Color = clMaroon
   end
   object b: TImage
     Left = 608
@@ -148,7 +148,7 @@ object Form1: TForm1
       FFFF}
     Transparent = True
   end
-  object zagrajmy: TStaticText
+  object lets_play: TStaticText
     Left = 280
     Top = 80
     Width = 320
@@ -163,7 +163,7 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 0
   end
-  object nowa: TBitBtn
+  object new_game: TBitBtn
     Left = 296
     Top = 352
     Width = 249
@@ -177,7 +177,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    OnClick = nowaClick
+    OnClick = new_gameClick
   end
   object score: TStaticText
     Left = 400
@@ -211,7 +211,7 @@ object Form1: TForm1
     TabOrder = 3
     Visible = False
   end
-  object next: TBitBtn
+  object next_round: TBitBtn
     Left = 296
     Top = 272
     Width = 249
@@ -227,38 +227,38 @@ object Form1: TForm1
     TabOrder = 4
     Visible = False
   end
-  object Timer_pilka: TTimer
+  object ball_timer: TTimer
     Enabled = False
     Interval = 15
-    OnTimer = Timer_pilkaTimer
+    OnTimer = ball_timerTimer
     Left = 680
     Top = 40
   end
-  object gora1: TTimer
+  object up_p1_timer: TTimer
     Enabled = False
     Interval = 20
-    OnTimer = gora1Timer
+    OnTimer = up_p1_timerTimer
     Left = 80
     Top = 112
   end
-  object dol1: TTimer
+  object down_p1_timer: TTimer
     Enabled = False
     Interval = 20
-    OnTimer = dol1Timer
+    OnTimer = down_p1_timerTimer
     Left = 88
     Top = 312
   end
-  object gora2: TTimer
+  object up_p2_timer: TTimer
     Enabled = False
     Interval = 20
-    OnTimer = gora2Timer
+    OnTimer = up_p2_timerTimer
     Left = 744
     Top = 120
   end
-  object dol2: TTimer
+  object down_p2_timer: TTimer
     Enabled = False
     Interval = 20
-    OnTimer = dol2Timer
+    OnTimer = down_p2_timerTimer
     Left = 752
     Top = 320
   end
