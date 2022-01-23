@@ -1,9 +1,10 @@
 object Form1: TForm1
-  Left = 329
-  Top = 114
-  Width = 882
-  Height = 510
-  Caption = 'Form1'
+  Left = 339
+  Top = 123
+  BorderStyle = bsSingle
+  Caption = 'PingPong'
+  ClientHeight = 471
+  ClientWidth = 866
   Color = clBtnFace
   UseDockManager = True
   DockSite = True
@@ -13,6 +14,8 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnKeyUp = FormKeyUp
   PixelsPerInch = 96
@@ -148,6 +151,12 @@ object Form1: TForm1
       FFFF}
     Transparent = True
   end
+  object Shape1: TShape
+    Left = 432
+    Top = 0
+    Width = 9
+    Height = 473
+  end
   object lets_play: TStaticText
     Left = 280
     Top = 80
@@ -226,6 +235,7 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 4
     Visible = False
+    OnClick = next_roundClick
   end
   object ball_timer: TTimer
     Enabled = False

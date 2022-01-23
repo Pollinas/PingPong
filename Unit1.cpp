@@ -9,16 +9,49 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 
-int x = -8;
-int y = -8 ;
+int x = -6;
+int y = -6 ;
 int bounces = 0;
 int pointsL = 0;
 int pointsR = 0;
-char turn = 'L';
+
 bool p1Up = false;
 bool p1Down = false;
 bool p2Up = false;
 bool p2Down = false;
+
+void out(){
+     Form1->ball_timer->Enabled = false;
+     Form1->b->Visible = false;
+     Form1->lets_play->Visible = true;
+     Form1->odbicia->Caption="Ilosc odbic: " + IntToStr(bounces); Form1->odbicia->Visible = true;
+     Form1->score->Caption = IntToStr(pointsL)+" : "+IntToStr(pointsR);
+     Form1->score->Visible = true;
+     Form1->next_round->Visible = true;
+     Form1->new_game->Visible = true;
+}
+
+void nextRound(){
+     //przywrocenie ustawienia pilki
+     Form1->b->Left = Form1->tlo->Width/2 - Form1->b->Width/2;
+     Form1->b->Top =  Form1->tlo->Height/2 - Form1->b->Height/2;
+
+     x=-6;y=-6;
+     bounces = 0;
+     Form1->ball_timer->Enabled = true;
+     Form1->b->Visible = true;
+     Form1->lets_play->Visible = false;
+     Form1->odbicia->Visible = false;
+     Form1->score->Visible = false;
+     Form1->next_round->Visible = false;
+     Form1->new_game->Visible = false;
+
+}
+
+void newGame(){
+   nextRound();
+   pointsR = 0; pointsL =0;
+}
 
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -29,10 +62,12 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void __fastcall TForm1::new_gameClick(TObject *Sender)
 {
-   new_game->Visible = false;
-   lets_play->Visible = false;
-   ball_timer->Enabled = true;
-   //turaGracza = 'L';
+    if(pointsR!=0 || pointsL!=0) {
+       if(Application->MessageBox("Czy na pewno chcesz zacz¹æ od nowa?", "PotwierdŸ",
+       MB_YESNO | MB_ICONQUESTION) == IDYES) newGame();
+       }
+
+     else newGame();
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::ball_timerTimer(TObject *Sender)
@@ -64,11 +99,9 @@ void __fastcall TForm1::ball_timerTimer(TObject *Sender)
 
     //skucha po lewej
     if (b->Left < tlo->Left) {
-          turn = 'L';
           pointsR++;
           lets_play->Caption = "Punkt dla gracza lewego >";
-           //loss();
-           //return;
+          out();
         }
 
     //odbcie od prawej paletki
@@ -83,20 +116,24 @@ void __fastcall TForm1::ball_timerTimer(TObject *Sender)
            if (p2Up == true) y -= 1;
            if (p2Down == true) y += 1;
 
+
+
            //odbicie na srodku paletki
            if (b->Top+b->Height >= p2->Top + p2->Height/2
                && b->Top <= p2->Top + p2->Height/2)
-               x--;
+
+                 x--;
+
          }
 
 
     //skucha po prawej 
     if (b->Left+b->Width > tlo->Left+tlo->Width) {
-                turn = 'R';
-                pointsR++;
+
+                pointsL++;
                 lets_play->Caption = "Punkt dla gracza prawego >";
-                //loss();
-                //return;
+                 out();
+
         }
 
 
@@ -174,4 +211,36 @@ void __fastcall TForm1::FormKeyUp(TObject *Sender, WORD &Key,
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TForm1::next_roundClick(TObject *Sender)
+{
+     nextRound();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
+{
+  if (Application->MessageBoxA("Czy na pewno zakoñczyæ program?", "PotwierdŸ",
+      MB_YESNO | MB_ICONQUESTION) == IDNO)
+      {
+        Action = caNone;
+      }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+   if (Application->MessageBoxA(" Witaj w grze PingPong.\n\n"
+        "Lewy gracz steruje wciskaj¹c klawisze A oraz Z.\n"
+        "Prawy gracz steruje wciskaj¹c strza³ki do góry i w dó³.\n\n"
+        "Dla urozmaiecenia zabawy :\n"
+        "Kiedy odbijesz pi³kê na œrodku paletki, wówczas zmienisz jej k¹t odbiciai pi³ka przypieszy.\n"
+        "Im d³u¿ej odbijasz, tym pi³ka szybciej przemieszcza siê.\n\n"
+        "Mi³ej zabawy!\n\n",
+        "PingPong", MB_OK | MB_ICONQUESTION) == IDOK )
+        {
+         Form1-> Visible = true;
+        }
+}
+//---------------------------------------------------------------------------
 
