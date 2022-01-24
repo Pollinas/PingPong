@@ -24,7 +24,7 @@ void out(){
      Form1->ball_timer->Enabled = false;
      Form1->b->Visible = false;
      Form1->lets_play->Visible = true;
-     Form1->odbicia->Caption="Ilosc odbic: " + IntToStr(bounces); Form1->odbicia->Visible = true;
+     Form1->odbicia->Caption="Iloœæ odbiæ: " + IntToStr(bounces); Form1->odbicia->Visible = true;
      Form1->score->Caption = IntToStr(pointsL)+" : "+IntToStr(pointsR);
      Form1->score->Visible = true;
      Form1->next_round->Visible = true;
@@ -51,6 +51,20 @@ void nextRound(){
 void newGame(){
    nextRound();
    pointsR = 0; pointsL =0;
+}
+
+void cornerHit(){
+   int aux = x;
+
+   if (x*y >= 0) {
+      x = -y ;
+      y = -aux;
+   }
+
+   if (x*y < 0) {
+       x = y ;
+       y = aux;
+   }
 }
 
 //---------------------------------------------------------------------------
@@ -96,6 +110,16 @@ void __fastcall TForm1::ball_timerTimer(TObject *Sender)
                && b->Top <= p1->Top + p1->Height/2)
                x++;
          }
+    // odbicie od rogu lewej paletki
+     if (b->Left >= p1->Left && b->Left <= p1->Left + p1->Width
+        && ((y<0 && (b->Top > p1->Top + p1->Height - b->Height/2)
+        && (b->Top <= p1->Top + p1->Height))
+        || (y>=0 && (b->Top < p1->Top - b->Height/2)
+        && (b->Top + b->Height >=  p1->Top) ))){
+
+        bounces++;
+        cornerHit();
+     }
 
     //skucha po lewej
     if (b->Left < tlo->Left) {
@@ -126,6 +150,17 @@ void __fastcall TForm1::ball_timerTimer(TObject *Sender)
 
          }
 
+     // odbicie od rogu prawej paletki
+         if (b->Left+ b->Width <= p2->Left + p2->Width
+            && b->Left + b->Width >= p2->Left
+            && ((y<0 && (b->Top > p2->Top + p2->Height - b->Height/2)
+            && (b->Top <= p2->Top + p2->Height))
+            || (y>=0 && (b->Top < p2->Top - b->Height/2)
+            && (b->Top + b->Height >=  p2->Top) ))){
+
+        bounces++;
+        cornerHit();
+     }
 
     //skucha po prawej 
     if (b->Left+b->Width > tlo->Left+tlo->Width) {
